@@ -1,0 +1,16 @@
+alias mux='~/.shell-configs/scripts/tmuxinator_wrapper.sh'
+alias vim='nvim'
+alias vi='nvim'
+
+if [[ "$(tmux display -p '#S')" =~ (console|k8s) ]]; then
+  alias kadmin="kubectl --kubeconfig ~/.kube/config-admin.yaml"
+
+  alias kadminc="export KUBECONFIG=$HOME/.kube/config-admin.yaml"
+
+  alias kd='kubectl drain --ignore-daemonsets --delete-local-data'
+
+  alias pbcopy="~/.shell-configs/scripts/pbcopy.sh"
+  alias pbpaste="~/.shell-configs/scripts/pbpaste.sh"
+
+  source <(kubectl completion zsh)
+fi

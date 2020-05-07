@@ -1,0 +1,16 @@
+export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.fzf/bin
+
+if [ -f ~/.local/bin/virtualenvwrapper.sh ] ; then
+  export WORKON_HOME=~/.virtualenvs
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv
+  source ~/.local/bin/virtualenvwrapper.sh
+fi
+
+# Set configs for WSL
+if [ -d /mnt/c/Windows/System32 ] ; then
+  alias powershell=/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe 
+  alias cmd=/mnt/c/Windows/System32/cmd.exe 
+  alias copy="/mnt/c/Windows/System32/clip.exe"
+  alias paste="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command Get-Clipboard | sed -e 's/\r//g'"
+fi

@@ -1,0 +1,13 @@
+name: k8s
+root: ~/
+socket_name: console
+tmux_options: -f ~/.tmux.console.conf
+
+windows:
+  - console: clear
+  - master0: ssh ludorl82@master0
+  - master1: ssh ludorl82@master1
+  - master2: ssh ludorl82@master2
+  - node0: ssh ludorl82@node0
+  - node1: ssh ludorl82@node1
+  - node2: ssh ludorl82@node2
