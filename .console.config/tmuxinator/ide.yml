@@ -1,0 +1,6 @@
+name: ide
+root: ~/git/
+socket_name: console
+
+windows:
+  - ide: clear
