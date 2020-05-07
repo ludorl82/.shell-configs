@@ -1,0 +1,6 @@
+name: console
+root: ~/tmp
+socket_name: console
+
+windows:
+  - console: clear

@@ -1,0 +1,30 @@
+{
+  "suggest.autoTrigger": "never",
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "initializationOptions": {
+        "provideLinting": true,
+        "provideCompletion": false,
+        "provideHover": false
+      },
+      "settings": {
+        "bashIde.enableSourceErrorDiagnostics": true,
+        "bashIde.backgroundAnalysisMaxFiles": 100
+      }
+    },
+    "python": {
+      "command": "pyright-langserver",
+      "args": ["--stdio"],
+      "filetypes": ["python"]
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf", "hcl", "tfvars", "terraform-vars"],
+      "rootPatterns": ["*.tfvars", ".terraform", "*.tf"]
+    }
+  }
+}
