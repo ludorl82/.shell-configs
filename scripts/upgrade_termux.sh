@@ -2,6 +2,10 @@
 
 pkg install git openssh wget vim
 
+git config --global user.email "ludo+github@rl82.com"
+git config --global user.name "Ludovic Lamarre"
+git config --global credential.helper store
+
 # Ensure Termux configs are done
 TRMX_CONFIG="$HOME/.termux/termux.properties"
 TRX_CONFIG1="extra-keys = [[]]"
