@@ -23,6 +23,11 @@ else
   echo $TRX_CONFIG2 already configured
 fi
 
+# Generate openssh keys if not already present
+if [[ ! -f "$HOME/.ssh/id_rsa" ]]; then
+  ssh-keygen
+fi
+
 # Install fonts
 if [[ ! -f "$HOME/.termux/font.ttf" ]]; then
   mkdir $HOME/.termux/fonts
