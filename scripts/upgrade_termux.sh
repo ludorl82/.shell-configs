@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+pkg install git openssh wget vim
+
 # Ensure Termux configs are done
 TRMX_CONFIG="$HOME/.termux/termux.properties"
 TRX_CONFIG1="extra-keys = [[]]"
