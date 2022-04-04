@@ -52,3 +52,25 @@ sudo npm i -g bash-language-server
 sudo npm install -g yarn
 yarn config set "strict-ssl" false -g
 yarn install
+
+# Install docker
+sudo apt -y install curl
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt -y install docker-ce docker-ce-cli containerd.io
+
+# Add yourself to docker group
+sudo usermod -aG docker $(whoami)
+
+# Install tmux
+sudo apt update && sudo apt install -y git automake build-essential pkg-config libevent-dev libncurses5-dev byacc bison
+rm -fr /tmp/tmux
+git clone https://github.com/tmux/tmux.git /tmp/tmux
+cd /tmp/tmux
+git checkout 3.0
+sh autogen.sh
+./configure && make
+sudo make install
+cd -
+rm -fr /tmp/tmux
