@@ -22,8 +22,8 @@ validateParam() {
 # Ensure Termux configs are done
 TRMX_CONFIG="$HOME/.termux/termux.properties"
 TRX_CONFIGS=("extra-keys = [[]]" "fullscreen = true")
-for config in ${TRX_CONFIGS[@]}; do
-  validateParam $config $TRMX_CONFIG
+for config in ${!TRX_CONFIGS[@]}; do
+  validateParam "${TRX_CONFIGS[$config]}" $TRMX_CONFIG
 done
 
 # Generate openssh keys if not already present
