@@ -6,22 +6,25 @@ git config --global user.email "ludo+github@rl82.com"
 git config --global user.name "Ludovic Lamarre"
 git config --global credential.helper store
 
+# Declare function to update config parameters
+validateParam() {
+  param="$1"
+  confg="$2"
+
+  if [[ "$(grep "^${param::-7}" $confg | wc -l)" == "0" ]]; then
+    echo "$param" >> $confg
+    echo Just applied $param
+  else
+    echo $param already configured
+  fi
+}
+
 # Ensure Termux configs are done
 TRMX_CONFIG="$HOME/.termux/termux.properties"
-TRX_CONFIG1="extra-keys = [[]]"
-TRX_CONFIG2="fullscreen = true"
-if [[ "$(grep "^${TRX_CONFIG1::-7}" $TRMX_CONFIG | wc -l)" == "0" ]]; then
-  echo "${TRX_CONFIG1}" >> $TRMX_CONFIG
-  echo Just applied $TRX_CONFIG1
-else
-  echo $TRX_CONFIG1 already configured
-fi
-if [[ "$(grep "^${TRX_CONFIG2::-7}" $TRMX_CONFIG | wc -l)" == "0" ]]; then
-  echo "${TRX_CONFIG2}" >> $TRMX_CONFIG
-  echo Just applied $TRX_CONFIG2
-else
-  echo $TRX_CONFIG2 already configured
-fi
+TRX_CONFIGS=("extra-keys = [[]]" "fullscreen = true")
+for config in ${!TRX_CONFIGS[@]}; do
+  validateParam "${TRX_CONFIGS[$config]}" $TRMX_CONFIG
+done
 
 # Generate openssh keys if not already present
 if [[ ! -f "$HOME/.ssh/id_rsa" ]]; then
