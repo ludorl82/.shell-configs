@@ -66,10 +66,15 @@ SCRIPTS_DIR="$HOME/.shell-configs/scripts"
 
 # Vim
 [ ! -d ~/.config/nvim ] && mkdir ~/.config/nvim
-rsync -avh "${CONFIGS_DIR}/.config/nvim/" ~/.config/nvim
+rsync -avh "${CONFIGS_DIR}/.console.config/nvim/" ~/.config/nvim
 
 # ZSH
-\cp $CONFIGS_DIR/.zshrc* ~/
+\cp $CONFIGS_DIR/.console.zshrc ~/.zshrc
+\cp $CONFIGS_DIR/.console.zshrc-Darwin ~/.zshrc-Darwin
+\cp $CONFIGS_DIR/.console.zshrc-Linux ~/.zshrc-Linux
+\cp $CONFIGS_DIR/.console.zshrc-aliases ~/.zshrc-aliases
+\cp $CONFIGS_DIR/.console.zshrc-fzf ~/.zshrc-fzf
+\cp $CONFIGS_DIR/.console.zshrc-ludorl82 ~/.zshrc-ludorl82
 [ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
                       && rm -f install.sh
 [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-vi-mode ] && git clone https://github.com/jeffreytse/zsh-vi-mode.git ~/.oh-my-zsh/custom/plugins/zsh-vi-mode
@@ -89,13 +94,12 @@ if [ ! -d ~/.fzf ]; then
 fi
 
 # tmux
-\cp $CONFIGS_DIR/.tmux.conf ~/
-\cp $CONFIGS_DIR/.tmux.console.conf ~/
-\cp $CONFIGS_DIR/.tmux.ide.conf ~/
-\cp $CONFIGS_DIR/.tmux.keys.conf ~/
-\cp $CONFIGS_DIR/.tmux.Linux.conf ~/
-\cp $CONFIGS_DIR/.gitmux.conf ~/
-rsync -avh "${CONFIGS_DIR}/.config/tmuxinator/" $HOME/.config/tmuxinator --delete
+\cp $CONFIGS_DIR/.console.tmux.conf ~/.tmux.conf
+\cp $CONFIGS_DIR/.console.tmux.console.conf ~/.tmux.console.conf
+\cp $CONFIGS_DIR/.console.tmux.keys.conf ~/.tmux.keys.conf
+\cp $CONFIGS_DIR/.console.tmux.Linux.conf ~/.tmux.Linux.conf
+\cp $CONFIGS_DIR/.console.gitmux.conf ~/.gitmux.conf
+rsync -avh "${CONFIGS_DIR}/.console.config/tmuxinator/" $HOME/.config/tmuxinator --delete
 
 # SSH
 [ ! -d ~/.ssh/ ] && mkdir -p ~/.ssh/ && ssh-keygen
@@ -105,8 +109,8 @@ if [ ! -f ~/.ssh/authorized_keys ]; then
 fi
 
 # Git
-\cp $CONFIGS_DIR/.gitconfig ~/
+\cp $CONFIGS_DIR/.console.gitconfig ~/.gitconfig
 
-# Bash for zsh in WSL
-\cp $CONFIGS_DIR/.bashrc ~/
-\cp $CONFIGS_DIR/.inputrc ~/
+# Bash for zsh console
+\cp $CONFIGS_DIR/.console.bashrc ~/.bashrc
+\cp $CONFIGS_DIR/.console.inputrc ~/.inputrc
