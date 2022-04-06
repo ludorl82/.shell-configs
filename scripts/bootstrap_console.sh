@@ -5,8 +5,7 @@ cd ~/
 # Install packages
 sudo add-apt-repository ppa:neovim-ppa/stable 
 sudo apt-get update
-sudo apt install -y tmux zsh ruby-full python3-pip iftop mtr telnet squid rsync bind9-dnsutils open-vm-tools libnss-ldap libpam-ldap ldap-utils jq neovim exuberant-ctags
-sudo echo "vmhgfs-fuse    /mnt/hgfs    fuse    defaults,allow_other    0    0" >> /etc/fstab
+sudo apt install -y zsh ruby-full python3-pip iftop mtr telnet squid rsync bind9-dnsutils open-vm-tools libnss-ldap libpam-ldap ldap-utils jq neovim exuberant-ctags
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && rm -f install.sh
@@ -18,27 +17,35 @@ sudo gem install tmuxinator
 pip3 install --user virtualenvwrapper
 
 # Install AWS CLI
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-rm -f awscliv2.zip
-rm -rf aws
+read -p "Install AWS CLI (y|n)? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+	unzip awscliv2.zip
+	sudo ./aws/install
+	rm -f awscliv2.zip
+	rm -rf aws
+fi
 
 # Install kubectl
-sudo apt-get update && sudo apt-get install -y apt-transport-https
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-sudo apt-get update
-sudo apt-get install -y kubectl
+read -p "Install kubectl (y|n)? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	sudo apt-get update && sudo apt-get install -y apt-transport-https
+	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+	echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+	sudo apt-get update
+	sudo apt-get install -y kubectl
+
+	# Installing kubetail
+	cd ~/.oh-my-zsh/custom/plugins/
+	git clone https://github.com/johanhaleby/kubetail.git kubetail
+	cp ~/.oh-my-zsh/custom/plugins/kubetail/kubetail ~/.local/bin
+fi
 
 # Installing fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-
-# Installing kubetail
-cd ~/.oh-my-zsh/custom/plugins/
-git clone https://github.com/johanhaleby/kubetail.git kubetail
-cp ~/.oh-my-zsh/custom/plugins/kubetail/kubetail ~/.local/bin
 
 # Installing openssh-server
 sudo apt install -y openssh-server
