@@ -13,6 +13,23 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # Set timezone
 sudo timedatectl set-timezone America/Montreal
 
+# Install tmuxinator
+read -p "Install terraform (y|n)? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  mkvirtualenv terraform
+  wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+  unzip terraform_0.12.24_linux_amd64.zip
+  mv terraform ~/.virtualenvs/terraform/bin
+  rm -f terraform_0.12.24_linux_amd64.zip
+  deactivate
+  mkvirtualenv terragrunt
+  wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.23.14/terragrunt_linux_amd64
+  mv terragrunt_linux_amd64 ~/.virtualenvs/terragrunt/bin/terragrunt
+  deactivate
+fi
+
+# Install tmuxinator
 sudo gem install tmuxinator
 pip3 install --user virtualenvwrapper
 
