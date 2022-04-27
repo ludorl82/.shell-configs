@@ -1,4 +1,4 @@
-alias mux='~/.shell-configs/scripts/tmuxinator_wrapper.sh'
+alias mux='~/.shell-scripts/scripts/tmuxinator_wrapper.sh'
 alias vim='nvim'
 alias vi='nvim'
 
