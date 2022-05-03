@@ -1,6 +1,8 @@
 alias mux='~/.shell-scripts/scripts/tmuxinator_wrapper.sh'
 alias vim='nvim'
 alias vi='nvim'
+alias kubectld='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti "$(docker ps | grep kubectl | awk \'{print $1}\')" /usr/bin/zsh'
+alias awsclid='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti "$(docker ps | grep awscli | awk \'{print $1}\')" /usr/bin/zsh'
 
 if [[ "$(tmux display -p '#S')" =~ (console|k8s) ]]; then
   alias kadmin="kubectl --kubeconfig ~/.kube/config-admin.yaml"
