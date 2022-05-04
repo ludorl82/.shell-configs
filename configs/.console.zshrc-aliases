@@ -4,15 +4,15 @@ alias vi='nvim'
 alias kubectld='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep kubectl | awk {print $1}) /usr/bin/zsh'
 alias awsclid='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep awscli | awk {print $1}) /usr/bin/zsh'
 
-if [[ "$(tmux display -p '#S')" =~ (console|k8s) ]]; then
-  alias kadmin="kubectl --kubeconfig ~/.kube/config-admin.yaml"
+if [[ "${TMUX_DISPLAY}" =~ (console|k8s) ]]; then
+  command -v kubectl &> /dev/null && alias kadmin="kubectl --kubeconfig ~/.kube/config-admin.yaml"
 
-  alias kadminc="export KUBECONFIG=$HOME/.kube/config-admin.yaml"
+  command -v kubectl &> /dev/null && alias kadminc="export KUBECONFIG=$HOME/.kube/config-admin.yaml"
 
-  alias kd='kubectl drain --ignore-daemonsets --delete-local-data'
+  command -v kubectl &> /dev/null && alias kd='kubectl drain --ignore-daemonsets --delete-local-data'
 
   alias pbcopy="~/.shell-configs/scripts/pbcopy.sh"
   alias pbpaste="~/.shell-configs/scripts/pbpaste.sh"
 
-  source <(kubectl completion zsh)
+  command -v kubectl &> /dev/null && source <(kubectl completion zsh)
 fi
