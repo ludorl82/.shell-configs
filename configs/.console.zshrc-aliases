@@ -3,8 +3,8 @@ alias vim='nvim'
 alias vi='nvim'
 alias kubectld='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep kubectl | awk '\''{print $1}'\'') /usr/bin/zsh'
 alias awsclid='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep awscli | awk '\''{print $1}'\'') /usr/bin/zsh'
-alias terraform_0.12.24='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep terraform_0.12.24 | awk '\''{print $1}'\'') /usr/bin/zsh'
-alias terraform_1.1.9='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep terraform_1.1.9 | awk '\''{print $1}'\'') /usr/bin/zsh'
+alias terraform_0.12.24d='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep terraform_0.12.24 | awk '\''{print $1}'\'') /usr/bin/zsh'
+alias terraform_1.1.9d='docker exec -e ENV=$ENV -e TMUX_DISPLAY=$TMUX_DISPLAY -e WINDOW=$WINDOW -e TMUX=$TMUX -ti $(docker ps | grep terraform_1.1.9 | awk '\''{print $1}'\'') /usr/bin/zsh'
 
 if [[ "${TMUX_DISPLAY}" =~ (console|k8s) ]]; then
   command -v kubectl &> /dev/null && alias kadmin="kubectl --kubeconfig ~/.kube/config-admin.yaml"
