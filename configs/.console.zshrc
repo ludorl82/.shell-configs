@@ -30,6 +30,7 @@ else
   source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
   source $ZSH/plugins/zsh-kubectl-prompt/zsh-kubectl-prompt.plugin.zsh
   [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+  prompt_context() {}
 fi
 
 # Allow key bindings after zsh-vi-mode
