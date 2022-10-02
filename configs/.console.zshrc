@@ -30,7 +30,12 @@ else
   source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
   source $ZSH/plugins/zsh-kubectl-prompt/zsh-kubectl-prompt.plugin.zsh
   [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-  prompt_context() {}
+  prompt_context() {
+    # Custom (Random emoji)
+    emojis=("⚡️" "🔥" "💀" "👑" "😎" "🐸" "🐵" "🦄" "🌈" "🍻" "🚀" "💡" "🎉" "🔑" "🇹🇭" "🚦" "🌙")
+    RAND_EMOJI_N=$(( $RANDOM % ${#emojis[@]} + 1))
+    prompt_segment black default "${emojis[$RAND_EMOJI_N]} "
+  }
 fi
 
 # Allow key bindings after zsh-vi-mode
