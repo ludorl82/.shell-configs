@@ -19,6 +19,9 @@ autoload -Uz compinit && compinit
 [[ "$TMUX" != "" ]] && [ -z ${TMUX_DISPLAY+x} ] && TMUX_DISPLAY="$(tmux display -p '#S')"
 [[ "$TMUX" != "" ]] && [ -z ${WINDOW+x} ] && WINDOW="$(tmux display-message -p '#W')"
 
+# Set current working directory
+[[ "$TMUX" != "" ]] && [[ -v CWD ]] && cd "${CWD}"
+
 # Create aliases
 source $ZSH/.zshrc-aliases
 
