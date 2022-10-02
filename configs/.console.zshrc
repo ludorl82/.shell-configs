@@ -1,47 +1,41 @@
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.zsh"
 export TERM="xterm-256color"
 export EDITOR=nvim
+export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$ZSH/.fzf/bin
 
 # Set histfile
-HISTFILE="$HOME/.histfile"
-HISTSIZE=10000
-SAVEHIST=10000
+export HISTFILE="$HOME/.histfile"
+export HISTSIZE=10000
+export SAVEHIST=10000
 setopt hist_ignore_space
 setopt appendhistory
+
+# Enabling advanced completion (git, etc)
+autoload -Uz compinit && compinit
 
 # Set tmux vars
 [[ "$TMUX" != "" ]] && [ -z ${TMUX_DISPLAY+x} ] && TMUX_DISPLAY="$(tmux display -p '#S')"
 [[ "$TMUX" != "" ]] && [ -z ${WINDOW+x} ] && WINDOW="$(tmux display-message -p '#W')"
 
+# Create aliases
+source $ZSH/.zshrc-aliases
+
 # Set theme and plugins
+[ -d $ZSH/plugins/zsh-vi-mode ] && source $ZSH/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh && KEYTIMEOUT=1
 if [[ "$TMUX" == "" ]]; then
   autoload -U colors && colors
   PROMPT="%{$fg[green]%}$> %{$reset_color%}"
   RPROMPT=" -- %{$fg[blue]%}%d%{$reset_color%}"
-  plugins=(zsh-vi-mode)
-elif [[ "$TMUX_DISPLAY" =~ (console) ]]; then
-  ZSH_THEME="crunch"
-  plugins=(git gitfast kubectl kubetail zsh-vi-mode)
-elif [[ "$TMUX_DISPLAY" =~ (k8s) ]]; then
-  ZSH_THEME="crunch"
-  plugins=(git gitfast kubectl kubetail zsh-vi-mode zsh-kubectl-prompt)
 else
-  ZSH_THEME="agnoster"
-  plugins=(git gitfast zsh-vi-mode)
+  source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
+  source $ZSH/plugins/zsh-kubectl-prompt/zsh-kubectl-prompt.plugin.zsh
+  [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 fi
-
-source $ZSH/oh-my-zsh.sh
-
-# Make vi mode escape sequence faster
-KEYTIMEOUT=1
-
-# Create aliases
-source $HOME/.zshrc-aliases
 
 # Allow key bindings after zsh-vi-mode
 function zvm_after_init() {
   # FZF
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
   # Enable history search
   bindkey "^[[1~" beginning-of-line
@@ -55,5 +49,5 @@ function zvm_after_init() {
 }
 
 # Source external scripts
-[ "$(uname)" != "" ] && source "$HOME/.zshrc-`uname`"
-source "$HOME/.zshrc-${USER}"
+[ "$(uname)" != "" ] && source "$ZSH/.zshrc-`uname`"
+source "$ZSH/.zshrc-${USER}"

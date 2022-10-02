@@ -1,7 +1,0 @@
-name: notes
-root: ~/
-socket_name: console
-tmux_options: -f ~/.tmux.console.conf
-
-windows:
-  - editeur: clear
