@@ -9,6 +9,8 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 setopt hist_ignore_space
 setopt appendhistory
+export LC_ALL="C.UTF-8"
+export USER="$(id -n -u)"
 
 # Enabling advanced completion (git, etc)
 autoload -Uz compinit && compinit
