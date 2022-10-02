@@ -1,7 +1,7 @@
 export ZSH="$HOME/.zsh"
 export TERM="xterm-256color"
 export EDITOR=nvim
-export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$ZSH/.fzf/bin
+export PATH=$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.fzf/bin
 
 # Set histfile
 export HISTFILE="$HOME/.histfile"
@@ -35,8 +35,8 @@ else
   prompt_context() {
     # Custom (Random emoji)
     emojis=("⚡️" "🔥" "💀" "👑" "😎" "🐸" "🐵" "🦄" "🌈" "🍻" "🚀" "💡" "🎉" "🔑" "🇹🇭" "🚦" "🌙")
-    RAND_EMOJI_N=$(( $RANDOM % ${#emojis[@]} + 1))
-    prompt_segment black default "${emojis[$RAND_EMOJI_N]} "
+    RAND_EMOJI_1=$(( $RANDOM % ${#emojis[@]} + 1))
+    prompt_segment black default "%n ${emojis[$RAND_EMOJI_1]} %T "
   }
 fi
 
