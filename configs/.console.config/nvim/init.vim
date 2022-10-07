@@ -55,3 +55,6 @@ function YankToClip(regname)
     call system('/home/ludorl82/.shell-scripts/scripts/pbcopy.sh < /home/ludorl82/tmp/vim-yank')
 endfunction
 xnoremap Y "zy :call YankToClip('z')<CR>h
+
+:cnoremap <C-N> <Down>
+:cnoremap <C-P> <Up>

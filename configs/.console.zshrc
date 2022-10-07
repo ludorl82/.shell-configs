@@ -45,11 +45,12 @@ if [[ "$TMUX" == "" ]]; then
   PROMPT="%{$fg[green]%}$> %{$reset_color%}"
   RPROMPT=" -- %{$fg[blue]%}%d%{$reset_color%}"
 else
-  source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
-  source $ZSH/plugins/zsh-kubectl-prompt/zsh-kubectl-prompt.plugin.zsh
-  source $ZSH/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-  source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+  source $ZSH/plugins/zsh-kubectl-prompt/zsh-kubectl-prompt.plugin.zsh
+  source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
+  source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source $ZSH/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
   prompt_context() {
     # Custom (Random emoji)
     emojis=("🔥" "💀" "👑" "😎" "🐸" "🐵" "🦄" "🌈" "🍻" "🚀" "💡" "🎉" "🔑" "🇹🇭" "🚦" "🌙")
