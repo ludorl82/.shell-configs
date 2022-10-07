@@ -70,10 +70,10 @@ function zvm_after_init() {
   # Enable history search
   bindkey "^[[1~" beginning-of-line
   bindkey "^[[4~" end-of-line
-  bindkey "^P" up-line-or-search
-  bindkey "^N" down-line-or-search
-  #bindkey "^P" history-beginning-search-backward
-  #bindkey "^N" history-beginning-search-forward
+  #bindkey "^P" up-line-or-search
+  #bindkey "^N" down-line-or-search
+  bindkey "^P" history-beginning-search-backward
+  bindkey "^N" history-beginning-search-forward
   stty -ixon
 
   # Fix word delete with C-W
