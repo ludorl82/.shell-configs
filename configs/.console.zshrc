@@ -45,12 +45,15 @@ if [[ "$TMUX" == "" ]]; then
   PROMPT="%{$fg[green]%}$> %{$reset_color%}"
   RPROMPT=" -- %{$fg[blue]%}%d%{$reset_color%}"
 else
+  # Source plugins
   [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
   source $ZSH/plugins/zsh-kubectl-prompt/zsh-kubectl-prompt.plugin.zsh
   source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
   source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
   source $ZSH/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+  # Source theme
+  source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
   prompt_context() {
     # Custom (Random emoji)
     emojis=("🔥" "💀" "👑" "😎" "🐸" "🐵" "🦄" "🌈" "🍻" "🚀" "💡" "🎉" "🔑" "🇹🇭" "🚦" "🌙")
@@ -67,8 +70,10 @@ function zvm_after_init() {
   # Enable history search
   bindkey "^[[1~" beginning-of-line
   bindkey "^[[4~" end-of-line
-  bindkey "^P" history-beginning-search-backward
-  bindkey "^N" history-beginning-search-forward
+  bindkey "^P" up-line-or-search
+  bindkey "^N" down-line-or-search
+  #bindkey "^P" history-beginning-search-backward
+  #bindkey "^N" history-beginning-search-forward
   stty -ixon
 
   # Fix word delete with C-W
