@@ -9,6 +9,7 @@ bindkey "^A" beginning-of-line
 #bindkey "^[f" forward-word
 #bindkey "^[b" backward-word
 bindkey "^D" delete-char # Restore C-D
+bindkey "^?" backward-delete-char # Restore backspace
 stty -ixon
 
 # Fix word delete with C-W
