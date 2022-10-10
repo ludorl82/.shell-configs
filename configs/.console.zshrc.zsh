@@ -39,7 +39,6 @@ autoload -Uz compinit && compinit
 source $ZSH/aliases.zsh
 
 # Set theme and plugins
-#[ -d $ZSH/plugins/zsh-vi-mode ] && source $ZSH/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh && KEYTIMEOUT=1
 if [[ "$TMUX" == "" ]]; then
   autoload -U colors && colors
   PROMPT="%{$fg[green]%}$> %{$reset_color%}"

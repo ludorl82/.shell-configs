@@ -1,5 +1,5 @@
-bindkey "^P" history-beginning-search-backward # Enable history search
-bindkey "^N" history-beginning-search-forward # Enable history search
+bindkey -v "^P" history-beginning-search-backward # Enable history search
+bindkey -v "^N" history-beginning-search-forward # Enable history search
 bindkey "^F" forward-char
 bindkey "^B" backward-char
 bindkey "^E" end-of-line
