@@ -9,8 +9,8 @@ case $- in
 esac
 
 # Set bash history size to unlimited and update on every command
-HISTSIZE= 
-HISTFILESIZE=
+HISTSIZE=100000
+HISTFILESIZE=100000
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r;"
 
@@ -19,3 +19,5 @@ if [ "`whoami`" = "root" ]; then usercolor='\[\033[1;31m\]'; else usercolor='\[\
 export PS1="\[\033[38;5;7m\][\t]\[$(tput sgr0)\] \[$(tput sgr0)\]${usercolor}\u\[$(tput sgr0)\]:\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;12m\]\w\[$(tput sgr0)\] \\$ \[$(tput sgr0)\]"
 
 alias console="export ENV=console && export CLIENT=linux && ssh -p2222 -o SendEnv=ENV -o SendEnv=CLIENT -R 8022:localhost:8022 localhost"
+
+source ~/.fzf.bash

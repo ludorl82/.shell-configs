@@ -55,7 +55,7 @@ else
   source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
   prompt_context() {
     # Custom (Random emoji)
-    emojis=("🔥" "💀" "👑" "😎" "🐸" "🐵" "🦄" "🌈" "🍻" "🚀" "💡" "🎉" "🔑" "🇹🇭" "🚦" "🌙")
+    emojis=("☹" "☺" "❄" "🌶" "🎗" "🎖" "🛰" "✈" "🛩" "🏍" "🏎" "♦" "♥" "♣" "♠" "♻" "☸" "☯" "☮" "🖋" "🏳" "🗳" "🗝" "🌡" "☠" "🕯" "🎙" "⌨" "🏖" "🏕" "⛰" "⛴")
     RAND_EMOJI_1=$(( $RANDOM % ${#emojis[@]} + 1))
     prompt_segment black default "%n ${emojis[$RAND_EMOJI_1]} %T "
   }
