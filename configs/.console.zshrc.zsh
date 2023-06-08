@@ -67,6 +67,11 @@ else
   source $ZSH/bindings.zsh
 fi
 
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+
+complete -C '/usr/local/bin/aws_completer' aws
+
 # Source external scripts
 [ "$(uname)" != "" ] && source "$ZSH/`uname`.zsh"
 source "$ZSH/${USER}.zsh"
