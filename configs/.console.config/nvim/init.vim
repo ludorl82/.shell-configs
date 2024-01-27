@@ -73,7 +73,7 @@ endfunction
 imap <silent><script><expr> <Right> SuggestOneCharacter()
 
 " Set copilot chat mappings
-nnoremap <C-w><C-n> :new<CR><C-w><C-r>:resize 10<CR>:CopilotChat<Space>
+nnoremap <C-w><C-n> :new<CR><C-w><C-r>:resize 8<CR>:CopilotChat<Space>
 
 "let b:coc_suggest_disable = 1
 
