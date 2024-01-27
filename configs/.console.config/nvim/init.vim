@@ -72,8 +72,33 @@ function! SuggestOneCharacter()
 endfunction
 imap <silent><script><expr> <Right> SuggestOneCharacter()
 
-" Set copilot chat mappings
-nnoremap <C-w><C-n> :new<CR><C-w><C-r>:resize 8<CR>:CopilotChat<Space>
+" Bind n and N to open new pane
+nnoremap <C-w>n :new<CR><C-w><C-r>:resize 8<CR>:CopilotChat<Space>
+nnoremap <C-w>N :tnew<CR><CR>:CopilotChat<Space>
+
+" Bind C-n to toggle a popup window with CopilotChat prompt
+let g:popup_window_id = -1
+let g:popup_buf_id = -1
+
+function! TogglePopupWindow() abort
+  let width = float2nr(&columns * 0.8)
+  let height = float2nr(&lines * 0.8)
+  let row = (&lines - height) / 2
+  let col = (&columns - width) / 2
+  let opts = {'relative': 'editor', 'width': width, 'height': height, 'row': row, 'col': col}
+
+  if g:popup_window_id == -1 || !nvim_win_is_valid(g:popup_window_id)
+    " Create a new popup window and store its ID
+    if g:popup_buf_id == -1 || !nvim_buf_is_valid(g:popup_buf_id)
+      let g:popup_buf_id = nvim_create_buf(v:false, v:true)
+    endif
+    let g:popup_window_id = nvim_open_win(g:popup_buf_id, v:true, opts)
+  else
+    " If the popup window is displayed, hide it
+    call nvim_win_hide(g:popup_window_id)
+  endif
+endfunction
+nnoremap <silent> <C-n> :call TogglePopupWindow()<CR>
 
 "let b:coc_suggest_disable = 1
 

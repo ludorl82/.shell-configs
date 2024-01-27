@@ -51,6 +51,8 @@ if [[ "$TMUX" == "" ]]; then
   autoload -U colors && colors
   PROMPT="%{$fg[green]%}$> %{$reset_color%}"
   RPROMPT=" -- %{$fg[blue]%}%d%{$reset_color%}"
+  export $(cat $HOME/.config/.env/openai_api_key.env | xargs)
+  export OPENAI_KEY=$OPENAI_API_KEY
 else
   # Source plugins
   [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
