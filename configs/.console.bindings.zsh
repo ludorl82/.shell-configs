@@ -1,47 +1,26 @@
 bindkey -v "^P" history-beginning-search-backward # Enable history search
 bindkey -v "^N" history-beginning-search-forward # Enable history search
-bindkey "^F" forward-char
-bindkey "^B" backward-char
+bindkey "^[[C" forward-char
+bindkey "^F" forward-word
+bindkey "^B" backward-word
 bindkey "^E" end-of-line
 bindkey "^A" beginning-of-line
-#bindkey "^[[1;5C" forward-word # Forward word C-right arrow
-#bindkey "^[[1;5D" backward-word # Backward word C-left arrow
-#bindkey "^[f" forward-word
-#bindkey "^[b" backward-word
-bindkey "^D" delete-char # Restore C-D
-bindkey "^?" backward-delete-char # Restore backspace
+bindkey "^D" delete-char
+bindkey "^?" backward-delete-char
+bindkey "^Q" kill-line
+local WORDCHARS=${WORDCHARS/\//}
+local WORDCHARS=${WORDCHARS/-/}
+local WORDCHARS=${WORDCHARS/./}
 stty -ixon
-
-# Fix word delete with C-W
-# So it stops at slash and dash
-my-backward-delete-word() {
-    local WORDCHARS=${WORDCHARS/\//}
-    local WORDCHARS=${WORDCHARS/-/}
-    local WORDCHARS=${WORDCHARS/./}
-    zle backward-delete-word
-}
-zle -N my-backward-delete-word
-bindkey '^W' my-backward-delete-word
-
 
 # Set C-f to add one char of auto suggest at the time
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
   end-of-line
-  vi-forward-char
-  vi-end-of-line
-  vi-add-eol
 )
 
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
   forward-char
   forward-word
-  emacs-forward-word
-  vi-forward-word
-  vi-forward-word-end
-  vi-forward-blank-word
-  vi-forward-blank-word-end
-  vi-find-next-char
-  vi-find-next-char-skip
 )
 
 # open command in editor
