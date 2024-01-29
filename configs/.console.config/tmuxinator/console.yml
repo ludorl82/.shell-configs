@@ -1,7 +1,6 @@
 name: console
 root: ~/
 socket_name: console
-tmux_options: -f ~/.tmux/.tmux.console.conf
 
 windows:
   - console: clear

@@ -1,8 +1,0 @@
-name: ide
-root: ~/
-socket_name: ide
-tmux_options: -f ~/.tmux/.tmux.ide.conf
-
-windows:
-  - editeur:
-  - console:

@@ -1,8 +1,0 @@
-Font=Hack Nerd Font Mono
-FontHeight=12
-Language=@
-Term=xterm-256color
-BellType=0
-Scrollbar=none
-SwitchShortcuts=no
-ThemeFile=mintty
