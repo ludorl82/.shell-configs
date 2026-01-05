@@ -1,7 +1,3 @@
-# Launch zsh if exists and not asked to skip
-# To open bash use: NOZSH=1 bash
-if [ -f /bin/zsh ] && [ -z ${NOZSH+x} ] && [ "`whoami`" != "root" ]; then exec zsh; return; fi
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
