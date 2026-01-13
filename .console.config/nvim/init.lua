@@ -170,3 +170,12 @@ end
 
 -- Key mapping to toggle full sidebar (CopilotChat + terminal)
 vim.keymap.set("n", "<leader>fs", ToggleFullSidebar, { desc = "Toggle full sidebar (CopilotChat + terminal)" })
+
+-- Include user lua
+local user = os.getenv("USER") or os.getenv("USERNAME")
+if user then
+  local fn = vim.fn.stdpath("config") .. "/init-" .. user .. ".lua"
+  if vim.fn.filereadable(fn) == 1 then
+    dofile(fn)
+  end
+end
