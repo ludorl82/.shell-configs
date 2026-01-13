@@ -35,22 +35,22 @@ export KEYTIMEOUT=1
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
-    echo -ne '[1 q'
+    echo -ne '\e[1 q'
   elif [[ ${KEYMAP} == main ]] ||
        [[ ${KEYMAP} == viins ]] ||
        [[ ${KEYMAP} = '' ]] ||
        [[ $1 = 'beam' ]]; then
-    echo -ne '[5 q'
+    echo -ne '\e[5 q'
   fi
 }
 zle -N zle-keymap-select
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "[5 q"
+    echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-echo -ne '[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '[5 q' ;} # Use beam shape cursor for each new prompt.
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Define __fzfcmd to standardize fzf invocation
 __fzfcmd() {
@@ -74,5 +74,7 @@ fzf-history-widget() {
 }
 zle -N fzf-history-widget
 bindkey '^R' fzf-history-widget
+
+export FZF_DEFAULT_OPTS='--color=bw'
 
 export FZF_DEFAULT_OPTS='--color=bw'
