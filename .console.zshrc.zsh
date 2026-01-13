@@ -30,6 +30,7 @@ else
   source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
   # Source theme
+  setopt promptsubst
   source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
 
   # Custom (Random emoji)
