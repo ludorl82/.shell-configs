@@ -1,5 +1,0 @@
-$include /etc/inputrc
-
-# Setting history search backward and forward for bash
-"\C-P": history-search-backward
-"\C-N": history-search-forward
