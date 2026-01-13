@@ -3,7 +3,7 @@
 if [ -f /bin/zsh ] && [ -z ${NOZSH+x} ] && [ "`whoami`" != "root" ]; then exec zsh; return; fi
 
 # Set prompt
-export PS1="\[]0;\u@\h: \w\]${debian_chroot:+($debian_chroot)}\[[01;32m\]\u@\h\[[00m\]:\[[01;34m\]\w\[[00m\]\$ "
+export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 
 # Source fzf if exists
 if [ -f ~/.fzf.bash ]; then . ~/.fzf.bash; fi
