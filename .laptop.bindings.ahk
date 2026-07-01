@@ -8,6 +8,9 @@ Send("{Shift up}")
 ; InputLevel 1 so our own synthetic Sends (level 0) below don't re-trigger these
 ; Disabled while Alacritty is focused, so its shell handles these keys natively
 #HotIf !WinActive("ahk_exe alacritty.exe")
+; Word-wise navigation outside Alacritty (native Ctrl+Right/Left word jump)
+^!f::Send("^{Right}")
+^!b::Send("^{Left}")
 #InputLevel 1
 ^a::Send("{Home}")
 ^e::Send("{End}")
