@@ -1,0 +1,17 @@
+[window]
+startup_mode = "Maximized"
+
+
+[font]
+normal = { family = "Hack Nerd Font Mono" }
+size = 14
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Control|Alt"
+chars = "\u001b\u0002"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Control|Alt"
+chars = "\u001b\u0006"
