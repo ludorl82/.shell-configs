@@ -20,7 +20,7 @@ Send("{Shift up}")
 ^p::Send("{Up}")
 ^d::Send("{Delete}")
 ^h::Send("{Backspace}")
-^w::Send("^x")
+^w::Send("^{Backspace}")
 ^k:: {
     Send("+{End}")
     Send("^x")
