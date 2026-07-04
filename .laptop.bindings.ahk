@@ -11,6 +11,7 @@ Send("{Shift up}")
 ; Word-wise navigation outside Alacritty (native Ctrl+Right/Left word jump)
 ^!f::Send("^{Right}")
 ^!b::Send("^{Left}")
+!Backspace::Send("^{Backspace}")
 #InputLevel 1
 ^a::Send("{Home}")
 ^e::Send("{End}")
