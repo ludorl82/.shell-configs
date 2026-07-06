@@ -1,5 +1,28 @@
 #Requires AutoHotkey v2.0
 
+; ── Setup (Windows laptop, e.g. ludorl82-xps) ──────────────────────────────
+;
+; 1. Install AutoHotkey v2 (https://www.autohotkey.com/download/ahk-v2.exe).
+;
+; 2. Place this file at:
+;      %LocalAppData%\AutoHotkey\.bindings.ahk
+;    and VirtualDesktopAccessor.dll alongside it (see the desktop-switching
+;    section below for where to get the DLL).
+;
+; 3. Register a logon task so it starts automatically every login
+;    (a Startup-folder shortcut also works, but a scheduled task survives
+;    being killed/relaunched more predictably during manual testing):
+;
+;      schtasks /Create /TN bindings ^
+;        /TR "\"%LocalAppData%\Programs\AutoHotkey\AutoHotkey64.exe\" \"%LocalAppData%\AutoHotkey\.bindings.ahk\"" ^
+;        /SC ONLOGON /RL LIMITED /F
+;
+;    To (re)start it in the current session without logging off, e.g. after
+;    editing this file: `schtasks /Run /TN bindings` (kill the running
+;    AutoHotkey64.exe process first if one is already active).
+;
+; ────────────────────────────────────────────────────────────────────────────
+
 ; Unstick Shift in case a prior run left it forced down
 Send("{Shift up}")
 
@@ -53,8 +76,11 @@ Send("{Shift up}")
 #HotIf
 
 ; Virtual desktop switching, via VirtualDesktopAccessor.dll
-; (https://github.com/Ciantic/VirtualDesktopAccessor, release 2024-12-16-windows11)
-; expected alongside this script as VirtualDesktopAccessor.dll
+; (https://github.com/Ciantic/VirtualDesktopAccessor). Get the DLL from:
+;   https://github.com/Ciantic/VirtualDesktopAccessor/releases/download/2024-12-16-windows11/VirtualDesktopAccessor.dll
+; (tested working on Windows 11 24H2/25H2, builds 26100.x-26200.x; check the
+; releases page for a newer tag if Windows has since broken compatibility).
+; Place it next to this script, as %LocalAppData%\AutoHotkey\VirtualDesktopAccessor.dll.
 VDA := A_ScriptDir "\VirtualDesktopAccessor.dll"
 DllCall("LoadLibrary", "Str", VDA, "Ptr")
 
