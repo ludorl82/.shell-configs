@@ -99,6 +99,11 @@ IsWindowOnDesktopNumber(hwnd, num) {
     return DllCall(VDA "\IsWindowOnDesktopNumber", "Ptr", hwnd, "Int", num, "Int")
 }
 
+MoveWindowToDesktopNumber(hwnd, num) {
+    global VDA
+    return DllCall(VDA "\MoveWindowToDesktopNumber", "Ptr", hwnd, "Int", num, "Int")
+}
+
 IsCloaked(hwnd) {
     buf := Buffer(4, 0)
     DllCall("dwmapi\DwmGetWindowAttribute", "Ptr", hwnd, "Int", 14, "Ptr", buf, "Int", 4)
@@ -153,6 +158,26 @@ GoToNextDesktop() {
         SwitchToDesktop(current + 1)
 }
 
+MoveActiveWindowToDesktop(num) {
+    hwnd := DllCall("GetForegroundWindow", "Ptr")
+    if !hwnd
+        return
+    MoveWindowToDesktopNumber(hwnd, num)
+    SwitchToDesktop(num)
+}
+
+MoveActiveWindowToPrevDesktop() {
+    current := GetCurrentDesktopNumber()
+    if (current > 0)
+        MoveActiveWindowToDesktop(current - 1)
+}
+
+MoveActiveWindowToNextDesktop() {
+    current := GetCurrentDesktopNumber()
+    if (current < GetDesktopCount() - 1)
+        MoveActiveWindowToDesktop(current + 1)
+}
+
 ^+1::GoToDesktop(1)
 ^+2::GoToDesktop(2)
 ^+3::GoToDesktop(3)
@@ -161,3 +186,6 @@ GoToNextDesktop() {
 
 ^!Left::GoToPrevDesktop()
 ^!Right::GoToNextDesktop()
+
+^+!Left::MoveActiveWindowToPrevDesktop()
+^+!Right::MoveActiveWindowToNextDesktop()
