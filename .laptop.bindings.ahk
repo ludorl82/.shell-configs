@@ -9,17 +9,31 @@
 ;    and VirtualDesktopAccessor.dll alongside it (see the desktop-switching
 ;    section below for where to get the DLL).
 ;
-; 3. Register a logon task so it starts automatically every login
-;    (a Startup-folder shortcut also works, but a scheduled task survives
-;    being killed/relaunched more predictably during manual testing):
+; 3. Register a logon task so it starts automatically every login. Plain
+;    `schtasks /Create ... /SC ONLOGON` is not enough on a laptop: Task
+;    Scheduler's defaults kill/refuse the process on battery power, and it
+;    won't relaunch on its own if the script ever crashes. Use this
+;    PowerShell instead, which also adds a 5-minute repeating trigger
+;    (MultipleInstances IgnoreNew skips it if already running, so it's a
+;    self-healing restart if the process ever dies):
 ;
-;      schtasks /Create /TN bindings ^
-;        /TR "\"%LocalAppData%\Programs\AutoHotkey\AutoHotkey64.exe\" \"%LocalAppData%\AutoHotkey\.bindings.ahk\"" ^
-;        /SC ONLOGON /RL LIMITED /F
+;      $exe = "$env:LocalAppData\Programs\AutoHotkey\AutoHotkey64.exe"
+;      $script = "$env:LocalAppData\AutoHotkey\.bindings.ahk"
+;      $action = New-ScheduledTaskAction -Execute $exe -Argument "`"$script`""
+;      $trigger = New-ScheduledTaskTrigger -AtLogOn
+;      $trigger.Repetition = (New-ScheduledTaskTrigger -Once -At (Get-Date) `
+;        -RepetitionInterval (New-TimeSpan -Minutes 5) `
+;        -RepetitionDuration (New-TimeSpan -Days 3650)).Repetition
+;      $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries `
+;        -DontStopIfGoingOnBatteries -MultipleInstances IgnoreNew `
+;        -ExecutionTimeLimit ([TimeSpan]::Zero) -StartWhenAvailable
+;      Register-ScheduledTask -TaskName bindings -Action $action `
+;        -Trigger $trigger -Settings $settings -User $env:USERNAME `
+;        -RunLevel Limited -Force
 ;
 ;    To (re)start it in the current session without logging off, e.g. after
-;    editing this file: `schtasks /Run /TN bindings` (kill the running
-;    AutoHotkey64.exe process first if one is already active).
+;    editing this file: `Start-ScheduledTask -TaskName bindings` (kill the
+;    running AutoHotkey64.exe process first if one is already active).
 ;
 ; ────────────────────────────────────────────────────────────────────────────
 
