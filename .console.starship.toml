@@ -1,0 +1,63 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = 'nord'
+
+[palettes.nord]
+nord0 = '#2e3440'
+nord1 = '#3b4252'
+nord3 = '#4c566a'
+nord4 = '#d8dee9'
+nord8 = '#88c0d0'
+nord11 = '#bf616a'
+nord14 = '#a3be8c'
+
+format = """
+[](fg:nord1)\
+$username\
+[](bg:nord3 fg:nord1)\
+$directory\
+[](bg:nord8 fg:nord3)\
+$git_branch\
+$git_status\
+[](fg:nord8)\
+$fill\
+$cmd_duration\
+$time
+$character"""
+
+[fill]
+symbol = " "
+
+[username]
+show_always = true
+style_user = "bg:nord1 fg:nord4"
+style_root = "bg:nord1 fg:nord11"
+format = '[ $user ]($style)'
+
+[directory]
+style = "bg:nord3 fg:nord4"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+style = "bg:nord8 fg:nord0"
+format = '[ $symbol$branch ]($style)'
+
+[git_status]
+style = "bg:nord8 fg:nord0"
+format = '[$all_status$ahead_behind ]($style)'
+
+[cmd_duration]
+style = "fg:nord3"
+format = "[ took $duration ]($style)"
+
+[time]
+disabled = false
+time_format = "%T"
+style = "fg:nord3"
+format = '[ $time ]($style)'
+
+[character]
+success_symbol = "[➜](bold nord14)"
+error_symbol = "[➜](bold nord11)"
