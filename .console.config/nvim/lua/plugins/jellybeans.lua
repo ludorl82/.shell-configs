@@ -1,8 +1,8 @@
 return {
   {
-    "gbprod/nord.nvim",
+    "WTFox/jellybeans.nvim",
     config = function()
-      vim.cmd("colorscheme nord")
+      vim.cmd("colorscheme jellybeans")
 
       -- keep comment style
       vim.api.nvim_set_hl(0, 'Comment', { fg = '#888888', bg = 'NONE', italic = false })
