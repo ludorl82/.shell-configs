@@ -1835,9 +1835,15 @@
   # rather than have p10k warn about console output during init.
   typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
-  # dir: blue bg, black fg (same as agnoster's prompt_dir)
+  # dir: blue bg, black fg (same as agnoster's prompt_dir). The stock preset
+  # gives shortened/anchor path segments their own light-gray/white color that
+  # overrides plain DIR_FOREGROUND for almost any real path -- override those
+  # too so directory text is flat black like agnoster, not two-tone gray/white.
   typeset -g POWERLEVEL9K_DIR_BACKGROUND=4
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=0
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=0
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=0
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
 
   # vcs: green bg when clean, yellow bg when dirty/untracked, black fg (agnoster convention)
   typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=2
