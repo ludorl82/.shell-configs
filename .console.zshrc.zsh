@@ -34,19 +34,8 @@ else
 
   # Source theme
   setopt promptsubst
-  source $ZSH/themes/agnoster-zsh-theme/agnoster.zsh-theme
-
-  # Custom (Random emoji)
-  prompt_context() {
-    emojis=(
-      "\\u00AE" "\\u00B6" "\\u00BF" "\\u00C6" "\\u00DE" "\\u00DF" 
-      "\\u00B5" "\\u00A9" "\\u00A7" "\\u00A5" "\\u00A4" "\\u00A3" 
-      "\\u00A2" "\\u00DF" "\\u00E6" "\\u00B1" "\\u00A1" "\\u00A6" 
-      "\\u00AA" "\\u00AC"
-    )
-    RAND_EMOJI_1=$(( $RANDOM % ${#emojis[@]} + 1))
-    prompt_segment black default "%n ${emojis[$RAND_EMOJI_1]} %T "
-  }
+  source $ZSH/themes/powerlevel10k/powerlevel10k.zsh-theme
+  [[ -f $ZSH/p10k.zsh ]] && source $ZSH/p10k.zsh
 
   # FZF
   [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
