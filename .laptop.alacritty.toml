@@ -1,5 +1,7 @@
 [window]
 startup_mode = "Maximized"
+title = "Alacritty"
+dynamic_title = false
 
 [window.padding]
 x = 4
