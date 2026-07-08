@@ -38,8 +38,6 @@ else
 
   # Custom (Random emoji)
   prompt_context() {
-    sed -i 's/CROSS="\\u2718"/CROSS="\\u00d7"/g' $HOME/.zsh/themes/agnoster-zsh-theme/agnoster.zsh-theme
-    sed -i 's/GEAR="\\u2699"/GEAR="\\u00f6"/g' $HOME/.zsh/themes/agnoster-zsh-theme/agnoster.zsh-theme
     emojis=(
       "\\u00AE" "\\u00B6" "\\u00BF" "\\u00C6" "\\u00DE" "\\u00DF" 
       "\\u00B5" "\\u00A9" "\\u00A7" "\\u00A5" "\\u00A4" "\\u00A3" 
