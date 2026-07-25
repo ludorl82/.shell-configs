@@ -43,6 +43,19 @@ Send("{Shift up}")
 ^!#m::WinMaximize("A")
 ^Space::Send("{LWin down}{Space}{LWin up}")
 
+; macOS-style screenshot keys, driving Greenshot.
+; Greenshot 1.3.x can't register Win-key combos itself: RegisterHotKey in
+; Greenshot.Base/Controls/HotkeyControl.cs tests `modifierKeyCode == Keys.LWin`
+; instead of masking the bit, so MOD_WIN is dropped as soon as another modifier
+; is present -- `Win + Shift + 4` would silently register as bare `Shift+4` and
+; eat the $ key. So AHK owns the Win combos and forwards to two F-keys no
+; physical keyboard has, set in %AppData%\Greenshot\Greenshot.ini as:
+;   RegionHotkey=Ctrl + Shift + Alt + F13
+;   FullscreenHotkey=Ctrl + Shift + Alt + F14
+; Fullscreen grabs only the monitor under the cursor, via ScreenCaptureMode=Auto.
+#+4::Send("^+!{F13}")   ; select an area
+#+3::Send("^+!{F14}")   ; current monitor
+
 ; Emacs-style editing bindings
 ; InputLevel 1 so our own synthetic Sends (level 0) below don't re-trigger these
 ; Disabled while Alacritty is focused, so its shell handles these keys natively
