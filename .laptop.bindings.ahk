@@ -74,10 +74,6 @@ Send("{Shift up}")
 ^d::Send("{Delete}")
 ^h::Send("{Backspace}")
 ^w::Send("^{Backspace}")
-^k:: {
-    Send("+{End}")
-    Send("^x")
-}
 #InputLevel 0
 #HotIf
 
