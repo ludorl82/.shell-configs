@@ -1,0 +1,35 @@
+/* Raccourcis d'edition facon Emacs, pour macOS.
+ *
+ * Pendant de la section « Emacs-style editing bindings » de
+ * .laptop.bindings.ahk, qui fait la meme chose sous Windows avec AutoHotkey.
+ * Ici il n'y a rien a installer : macOS lit ce fichier tout seul, pour toutes
+ * les applications Cocoa, sans droits administrateur. C'est ce qui permet de
+ * le poser aussi sur un Mac gere par un employeur.
+ *
+ * Emplacement : ~/Library/KeyBindings/DefaultKeyBinding.dict
+ * Pris en compte au prochain demarrage de chaque application.
+ *
+ * CE QUI N'EST PAS ICI l'est deja nativement dans macOS, et le redeclarer ne
+ * ferait qu'ajouter du bruit : ^a ^e debut/fin de ligne, ^f ^b caractere,
+ * ^n ^p ligne, ^d ^h suppression, ^k ^y couper/coller, ^t transposer,
+ * et ⌥⌫ pour effacer le mot precedent.
+ *
+ * Notation : ^ = Controle, ~ = Option, $ = Majuscule, @ = Commande.
+ *
+ * ATTENTION au clavier : ~f et ~b produisent normalement ƒ et ∫. Les lier
+ * ici retire ces deux caracteres. Sur un clavier canadien francais les
+ * accents sont des touches directes, donc rien d'utile n'est perdu, mais
+ * c'est le genre de chose qu'on oublie six mois plus tard.
+ */
+{
+    /* Mot precedent / suivant, convention Emacs (meta-f, meta-b). */
+    "~f"  = "moveWordForward:";
+    "~b"  = "moveWordBackward:";
+    "~$f" = "moveWordForwardAndModifySelection:";
+    "~$b" = "moveWordBackwardAndModifySelection:";
+
+    /* Suppressions que macOS ne lie pas. */
+    "^w"  = "deleteWordBackward:";
+    "~d"  = "deleteWordForward:";
+    "^u"  = "deleteToBeginningOfLine:";
+}
