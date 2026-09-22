@@ -1,0 +1,64 @@
+{
+  "_": [
+    "Ce que le clavier de mes Mac doit etre. Le COMMENT vit dans",
+    ".shell-scripts/scripts/mac_keyboard.sh, qui lit ce fichier et l'applique ;",
+    "le POURQUOI de chaque piege est commente la-bas. Ici, rien que les faits.",
+    "Les deux Mac lisent ce meme fichier : le portable perso l'applique a",
+    "chaque darwin-rebuild, celui du bureau quand je lance le script."
+  ],
+
+  "menu_shortcuts": {
+    "_": [
+      "Raccourcis lies a une ENTREE DE MENU, par son TITRE, qui est traduit.",
+      "Toutes les graphies sont declarees : celle qui n'existe pas sur la",
+      "machine ne correspond simplement jamais, donc un seul fichier couvre un",
+      "Mac anglais au bureau et un Mac fr-CA a la maison.",
+      "Notation : ^ Controle, ~ Option, $ Majuscule, @ Commande."
+    ],
+    "NSGlobalDomain": {
+      "_": "Fenetre > Deplacer et redimensionner > Remplir. Titres lus dans MenuCommands.loctable d'AppKit.",
+      "Fill": "^~@m",
+      "Remplir": "^~@m",
+      "Remplissage": "^~@m"
+    },
+    "com.google.Chrome": {
+      "_": "Chrome livre sa propre traduction. Titre lu dans son locale.pak : apostrophe ASCII, pas typographique.",
+      "Close Tab": "^$w",
+      "Fermer l'onglet": "^$w"
+    }
+  },
+
+  "symbolic_hotkeys": {
+    "_": [
+      "Raccourcis SYSTEME, par identifiant. Correspondances lues dans",
+      "KeyboardSettings.appex/Contents/Resources/DefaultSpacesShortcuts.xml.",
+      "char = code du caractere NON modifie ; Majuscule ne le change pas."
+    ],
+    "entries": [
+      { "id":  60, "what": "source de saisie precedente", "char": 32, "keycode": 49, "modifiers": ["control"] },
+      { "id": 118, "what": "Bureau 1", "char": 49, "keycode": 18, "modifiers": ["control", "shift"] },
+      { "id": 119, "what": "Bureau 2", "char": 50, "keycode": 19, "modifiers": ["control", "shift"] },
+      { "id": 120, "what": "Bureau 3", "char": 51, "keycode": 20, "modifiers": ["control", "shift"] },
+      { "id": 121, "what": "Bureau 4", "char": 52, "keycode": 21, "modifiers": ["control", "shift"] },
+      { "id": 122, "what": "Bureau 5", "char": 53, "keycode": 23, "modifiers": ["control", "shift"] }
+    ]
+  },
+
+  "input_sources": {
+    "_": [
+      "id 80 pour la CSA est CONFIRME : apres la premiere reconnexion macOS a",
+      "ecrit lui-meme AppleCurrentKeyboardLayoutInputSourceID =",
+      "com.apple.keylayout.Canadian-CSA. Les noms portent leur ponctuation,",
+      "lus dans AppleKeyboardLayouts-L.dat.",
+      "drop est nomme une disposition a la fois, JAMAIS un balayage : sur le",
+      "Mac du bureau ca effacerait des dispositions que je ne connais pas.",
+      "Canadian part parce qu'elle et la CSA affichent toutes deux CA."
+    ],
+    "show_menu": true,
+    "want": [
+      { "name": "U.S.",           "id":  0 },
+      { "name": "Canadian - CSA", "id": 80 }
+    ],
+    "drop": [ "Canadian" ]
+  }
+}
