@@ -5,9 +5,6 @@ git config --global credential.helper 'cache --timeout=604800'
 # Enabling advanced completion (git, etc)
 autoload -Uz compinit && compinit
 
-# Fix windows terminal paste
-[[ "$CLIENT" == "terminal" ]] && unset zle_bracketed_paste
-
 # AWS CLI autocompletion
 autoload -U +X bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
