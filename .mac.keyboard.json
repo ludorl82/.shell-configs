@@ -44,6 +44,17 @@
     ]
   },
 
+  "modifier_keys": {
+    "_": [
+      "Touches remappees au niveau HID, pour TOUS les claviers branches,",
+      "par hidutil (aucun sudo). Valeurs : control, escape, option, command,",
+      "ou none pour rendre la touche a elle-meme. Un agent de connexion",
+      "reapplique le tout a chaque ouverture de session : hidutil seul ne",
+      "survit pas a un redemarrage."
+    ],
+    "caps_lock": "control"
+  },
+
   "input_sources": {
     "_": [
       "id 80 pour la CSA est CONFIRME : apres la premiere reconnexion macOS a",
