@@ -32,7 +32,10 @@
     "_": [
       "Raccourcis SYSTEME, par identifiant. Correspondances lues dans",
       "KeyboardSettings.appex/Contents/Resources/DefaultSpacesShortcuts.xml.",
-      "char = code du caractere NON modifie ; Majuscule ne le change pas."
+      "char = code du caractere NON modifie ; Majuscule ne le change pas.",
+      "Les FLECHES n'ont pas de caractere (65535) et macOS leur ajoute le",
+      "modificateur function (0x800000) : 79/81 valaient 8650752 =",
+      "controle + function, lu dans ce que macOS avait ecrit lui-meme."
     ],
     "entries": [
       { "id":  60, "what": "source de saisie precedente", "char": 32, "keycode": 49, "modifiers": ["control"] },
@@ -40,7 +43,9 @@
       { "id": 119, "what": "Bureau 2", "char": 50, "keycode": 19, "modifiers": ["control", "shift"] },
       { "id": 120, "what": "Bureau 3", "char": 51, "keycode": 20, "modifiers": ["control", "shift"] },
       { "id": 121, "what": "Bureau 4", "char": 52, "keycode": 21, "modifiers": ["control", "shift"] },
-      { "id": 122, "what": "Bureau 5", "char": 53, "keycode": 23, "modifiers": ["control", "shift"] }
+      { "id": 122, "what": "Bureau 5", "char": 53, "keycode": 23, "modifiers": ["control", "shift"] },
+      { "id":  79, "what": "un bureau a gauche", "char": 65535, "keycode": 123, "modifiers": ["control", "option", "function"] },
+      { "id":  81, "what": "un bureau a droite", "char": 65535, "keycode": 124, "modifiers": ["control", "option", "function"] }
     ]
   },
 
