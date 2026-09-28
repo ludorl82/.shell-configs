@@ -35,17 +35,30 @@ vim.api.nvim_set_keymap("n", "<leader>cc", ":CopilotChatToggle<CR>", { silent = 
 vim.api.nvim_set_keymap("n", "<leader>bn", ":bnext<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>bp", ":bprev<CR>", { silent = true })
 
--- Configure clipboard to use custom pbcopy script
+-- Clipboard: every yank and delete goes to the system clipboard (the Mac's,
+-- through ssh and tmux) via pbcopy.sh, which hands it to tmux (load-buffer -w)
+-- or writes OSC 52 outside tmux.
+-- The Mac's clipboard cannot be read back through ssh, so "paste" returns what
+-- THIS Neovim last copied: with unnamedplus, `p` reads the + register, and the
+-- old paste command ("echo") made every `p` paste an empty line. Text copied
+-- elsewhere on the Mac is pasted with Cmd+V, as before.
+vim.opt.clipboard = "unnamedplus"
+local pbcopy = vim.fn.expand("~/.shell-scripts/scripts/pbcopy.sh")
+local clip_cache = { ["+"] = { { "" }, "v" }, ["*"] = { { "" }, "v" } }
+local function clip_copy(reg)
+  return function(lines, regtype)
+    clip_cache[reg] = { lines, regtype }
+    vim.fn.system({ pbcopy }, lines)
+  end
+end
+local function clip_paste(reg)
+  return function() return clip_cache[reg] end
+end
 vim.g.clipboard = {
   name = "pbcopy-custom",
-  copy = {
-    ["+"] = { "sh", "-c", "cat | ~/.shell-scripts/scripts/pbcopy.sh" },
-    ["*"] = { "sh", "-c", "cat | ~/.shell-scripts/scripts/pbcopy.sh" },
-  },
-  paste = {
-    ["+"] = "echo",
-    ["*"] = "echo",
-  },
+  copy = { ["+"] = clip_copy("+"), ["*"] = clip_copy("*") },
+  paste = { ["+"] = clip_paste("+"), ["*"] = clip_paste("*") },
+  cache_enabled = 0,
 }
 
 -- Bootstrap lazy.nvim
