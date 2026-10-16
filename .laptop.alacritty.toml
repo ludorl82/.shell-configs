@@ -2,6 +2,10 @@
 startup_mode = "Maximized"
 title = "Alacritty"
 dynamic_title = false
+# macOS: make the left Option key send Alt (Meta) so tmux M-<key> bindings
+# work, e.g. M-a.. in choose-tree (prefix w) to pick items beyond 9. Right
+# Option keeps composing special/accented characters. Ignored elsewhere.
+option_as_alt = "OnlyLeft"
 
 [window.padding]
 x = 4
